@@ -2,29 +2,32 @@
 #include <stdlib.h>
 void main()
 {
-    int n, i, countAnos;
-    long pa, pb, proximoA, proximoB;
-    double g1, g2, crescimentoA, crescimentoB;
+    int n, i, anos;
+    long pa, pb;
+    double g1, g2, taxaA, taxaB;
     scanf("%d", &n);
     for (i = 0; i < n; i++)
     {
         scanf("%ld %ld %lf %lf", &pa, &pb, &g1, &g2);
-        countAnos = 1;
-        crescimentoA = 1 + (g1 / 100), crescimentoB = 1 + (g2 / 100);
-        while (proximoA <= proximoB)
+        taxaA = 1 + (g1 / 100);
+        taxaB = 1 + (g2 / 100);
+        anos = 1;
+        pa = (long)(pa * taxaA);
+        pb = (long)(pb * taxaB);
+        while (pa <= pb)
         {
-            pa = (pa * crescimentoA);
-            pb = (pb * crescimentoB);
-            countAnos++;
-            proximoA = pa*crescimentoA;
-            proximoB = pb*crescimentoB;
-            if (countAnos > 100)
+            anos++;
+            pa = (long)(pa * taxaA);
+            pb = (long)(pb * taxaB);
+            if (anos > 100)
             {
-                printf("Mais de 1 seculo.");
-                exit(0);
+                printf("Mais de 1 seculo.\n");
+                break;
             }
         }
-
-        printf("%d anos.", countAnos);
+        if (anos <= 100)
+        {
+            printf("%d anos.\n", anos);
+        }
     }
 }

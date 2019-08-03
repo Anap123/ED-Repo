@@ -11,10 +11,9 @@ void main()
         if (a % 2 == 1)
         {
             count++;
-            printf("%d/%d\n", a, baixo);
             s += (double) a / (double) baixo;
             baixo *= 2;
         }
     }
-    printf("%.2lf", s);
+    printf("%.2lf\n", s);
 }

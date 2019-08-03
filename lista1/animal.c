@@ -42,11 +42,11 @@ int main()
     else{
         if (strcmp(tipo3, "carnivoro") == 0)
         {
-            printf("aguia");
+            printf("aguia\n");
         }
         else
         {
-            printf("pomba");
+            printf("pomba\n");
         }
     }
     
