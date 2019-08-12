@@ -16,10 +16,15 @@
  */
 #include <stdio.h>
 void main(){
-	int x;  
-	long y, i;
+	int x, j;  
+	long y, i, atual;
 	scanf("%d %ld", &x, &y);
-	for (i = x; i <= y; i+2){
-		printf("%ld %ld %ld\n", i++, i, i+2);
+	for (i = 1; i <= y; i+=x){
+		for(j = 0; j < x; j++){
+			atual = i+j;
+			if (atual > y) break;
+			if (j ==x-1) printf("%ld\n", atual);
+			else printf("%ld ", atual);
+		}
 	}	
 }
