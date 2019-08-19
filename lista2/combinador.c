@@ -24,12 +24,10 @@ void main()
     scanf("%d", &n);
     for (i = 0; i < n; i++)
     {
-        pres = 
         scanf("%s %s", p1, p2);
         count = ind = 0;
         len1 = (strlen(p1));
         len2 = (strlen(p2));
-        printf("%d %d\n", len1, len2);
         while (1)
         {
             if (count < len1)
@@ -46,6 +44,8 @@ void main()
                 break;
             count++;
         }
+        pres[ind] ='\0';
+
         printf("%s\n", pres);
 
     }

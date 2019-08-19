@@ -4,29 +4,27 @@ void main()
 {
     int n, i, len, j, k, count;
     scanf("%d", &n);
-    char frase[1001], atual;
+    char frase[1024], atual;
     getchar();
     for (i = 0; i < n; i++)
     {
         count = 0;
-        fgets(frase, 1001, stdin);
-        len = strlen(frase) - 1;
-        for (j = 0; j < len; j++)
+        fgets(frase, 1024, stdin);
+        len = strlen(frase);
+        for (j = 97; j <= 122; j++)
         {
-            atual = frase[j];
-            if (atual != '0' && atual != ',' && atual != ' ')
+            for (k = 0; k < len; k++)
             {
-                count++;
-                for (k = 0; k < len; k++)
+                if (j == (int)frase[k])
                 {
-                    if (frase[k] == atual) frase[k] = '0';
-                    
+                    count++;
+                    break;
                 }
             }
         }
         if (count == 26)
             printf("frase completa\n");
-        else if (count >= 13 && count < 26)
+        else if (count >= 13)
             printf("frase quase completa\n");
         else
             printf("frase mal elaborada\n");
