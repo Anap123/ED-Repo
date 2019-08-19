@@ -1,65 +1,33 @@
 #include <stdio.h>
-int main()
+void main()
 {
-    int a = 1, c = 1, i, j, temp, buracos;
+    int alt = 1, camad = 1, i, j, k;
     while (1)
     {
-        scanf("%d %d", &a, &c);
-        if (a == 0 && c == 0) break;
-        buracos = 0;
-        int bloco[a][c];
-        int blocoEsculpido[a][c];
-        for (j = 0; j < a; j++)
-        {
-            for (i = 0; i < c; i++)
-            {
-                bloco[j][i] = 1;
-                blocoEsculpido[j][i] = 1;
-            }
-        }
+        scanf("%d %d", &alt, &camad);
+        if (alt == 0 && camad == 0)
+            break;
 
-        for (i = 0; i < c; i++)
-        {
-            scanf("%d", &temp);
-            for (j = 0; j < a - temp; j++)
-            {
-                blocoEsculpido[j][i] = 0;
-            }
-        }
+        int blocoN[camad];
+        int buracos = 0;
+        for (i = 0; i < camad; i++)
+            scanf("%d", &blocoN[i]);
 
-        for (j = 0; j < a; j++)
+        for (j = alt; j > 0; j--)
         {
-            for (i = 0; i < c; i++)
+            for (k = 0; k < camad; k++)
             {
-
-                //printf("%d ", blocoEsculpido[j][i]);
-            }
-            //printf("\n");
-        }
-
-        for (i = 0; i < a; i++)
-        {
-            for (j = 0; j < c; j++)
-            {
-                if (j < c - 1)
+                if (blocoN[k] < j && (k + 1 < camad && blocoN[k + 1] >= j))
                 {
-                    if (blocoEsculpido[i][j] == 0 && blocoEsculpido[i][j + 1] == 1)
-                    {
-                        buracos++;
-                        //printf("+1 no %d %d\n", i, j);
-                    }
+                    buracos++;
                 }
-                else
+                else if (k == camad - 1 && blocoN[k] < j)
                 {
-                    if (blocoEsculpido[i][j] == 0)
-                    {
-                        buracos++;
-                        //printf("+1 no %d %d\n", i, j);
-                    }
+                    buracos++;
                 }
             }
         }
+
         printf("%d\n", buracos);
     }
-    return 0;
 }

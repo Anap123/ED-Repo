@@ -16,14 +16,37 @@
  * =====================================================================================
  */
 #include <stdio.h>
-void main(){
-    int n, i, j;
-    char p1[50], p2[50];
+#include <string.h>
+void main()
+{
+    int n, i, count, len1, len2, ind, j;
+    char p1[51], p2[51], pres[101];
     scanf("%d", &n);
-    for(i = 0; i < n; i++){
+    for (i = 0; i < n; i++)
+    {
+        pres = 
         scanf("%s %s", p1, p2);
-        for (j = 0; j < 50; j++){
-    }
+        count = ind = 0;
+        len1 = (strlen(p1));
+        len2 = (strlen(p2));
+        printf("%d %d\n", len1, len2);
+        while (1)
+        {
+            if (count < len1)
+            {
+                pres[ind] = p1[count];
+                ind++;
+            }
+            if (count < len2)
+            {
+                pres[ind] = p2[count];
+                ind++;
+            }
+            if (count >= len1 && count>=len2)
+                break;
+            count++;
+        }
+        printf("%s\n", pres);
 
-    
+    }
 }
