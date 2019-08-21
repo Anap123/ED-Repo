@@ -52,8 +52,7 @@ void main()
                 for (posicaoPilotoC = 0; posicaoPilotoC < pilotos; posicaoPilotoC++)
                 {
                     pilotoC = gps[gp][posicaoPilotoC];
-                    printf("piloto no lugar %d com %d pontos\n", posicaoPilotoC + 1, tabelasPonts[tabela][posicaoPilotoC]);
-                    pontuacoes[pilotoC] += tabelasPonts[tabela][posicaoPilotoC];
+                    pontuacoes[pilotoC-1] += tabelasPonts[tabela][posicaoPilotoC];
 
                 }
             }
