@@ -1,82 +1,54 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  formula.c
+ *
+ *    Description:  1125 URI
+ *
+ *        Version:  1.0
+ *        Created:  21/08/2019 17:10:33
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Arthur Mauricio 
+ *   Organization:  IFPB Campina Grande 
+ *
+ * =====================================================================================
+ */
 #include <stdio.h>
-void main()
-{
-    int nGps, pilotos, i, j, k, qTabelas, pilotosPontuados, tabela, gp, posicaoPilotoC, pilotoC, maiorPont, countVencedores;
-    while (1)
-    {
-        scanf("%d %d", &nGps, &pilotos);
-        if (nGps == 0 && pilotos == 0)
-            break;
-        int gps[nGps][pilotos];
-        for (i = 0; i < nGps; i++)
-            for (j = 0; j < pilotos; j++)
-                scanf("%d", &gps[i][j]);
+void main(){
+    int g, p, j, i, s, pp,k;
+    while(1){
+        scanf("%d %d", &g, &p);
+        if(g==0||p==0) break;
 
-        scanf("%d", &qTabelas);
-        int tabelasPonts[qTabelas][pilotos];
-        for (i = 0; i < qTabelas; i++)
-        {
-            scanf("%d", &pilotosPontuados);
-            for (j = 0; j < pilotosPontuados; j++)
-                scanf("%d", &tabelasPonts[i][j]);
+        int gps[g][p];
+        for(i = 0; i < g; i++) for(j = 0; j < p; j++) scanf("%d", &gps[i][j]);
 
-            //Colocando zeros nos lugares da tabela que não são pontuados
-            if (pilotosPontuados < pilotos)
-            {
-                for (k = pilotosPontuados; k < pilotos; k++)
-                {
-                    tabelasPonts[i][k] = 0;
-                }
+        scanf("%d", &s);
+        int tables[s][p];
+        for(i = 0; i < s;i++){
+            scanf("%d", &pp);
+            for(j=0; j < p; j++){
+                if(j<pp) scanf("%d", &tables[i][j]);
+                else tables[i][j] = 0;
             }
         }
 
-        for (i = 0; i < qTabelas; i++)
-        {
-            printf("tabela %d :", i);
-            for (j = 0; j < pilotos; j++)
-            {
-                printf("%d ", tabelasPonts[i][j]);
+        int pontuacoes[p], maior, iPilotoC;
+        for(i=0; i < s; i++){
+            for (j=0; j < p; j++) pontuacoes[j] = 0;
+            for(j=0; j < g; j++){
+                for(k = 0; k < p; k++){
+                    iPilotoC = gps[j][k]-1;
+                    pontuacoes[k] += tables[i][iPilotoC];
+                }
             }
+            maior = 0;
+            for(j=0;j<p;j++) if(pontuacoes[j] >= maior) maior = pontuacoes[j];
+            for(j=0;j<p;j++) if(pontuacoes[j] == maior)
+                printf("%d ", j+1);
             printf("\n");
         }
-        for (tabela = 0; tabela < qTabelas; tabela++)
-        {
-            //Pontuações ordenadas de pilotos 1 até pilotos.
-            int pontuacoes[pilotos];
-            for (i = 0; i < pilotos; i++)
-                pontuacoes[i] = 0;
-
-            for (gp = 0; gp < nGps; gp++)
-            {
-
-                for (posicaoPilotoC = 0; posicaoPilotoC < pilotos; posicaoPilotoC++)
-                {
-                    pilotoC = gps[gp][posicaoPilotoC];
-                    pontuacoes[pilotoC-1] += tabelasPonts[tabela][posicaoPilotoC];
-
-                }
-            }
-
-            int vencedores[pilotos];
-            //Pontuação do piloto 1
-            maiorPont = pontuacoes[0], countVencedores = 0;
-            for (pilotoC = 0; pilotoC < pilotos; pilotoC++)
-                if (pontuacoes[pilotoC] > maiorPont)
-                {
-                    maiorPont = pontuacoes[pilotoC];
-                }
-
-            for (pilotoC = 0; pilotoC < pilotos; pilotoC++)
-            {
-                if (pontuacoes[pilotoC] >= maiorPont)
-                {
-                    vencedores[countVencedores] = pilotoC;
-                    countVencedores++;
-                    printf("%d ", pilotoC+1);
-                }
-            }
-
-            printf("\n");
-        }
-    }
+     }
 }
