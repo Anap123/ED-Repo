@@ -17,7 +17,7 @@
  */
 #include <stdio.h>
 int main(){
-    long int tf, maiorD;
+    long int tf, maiorD, temp;
     int qg, i;
     scanf("%ld %d", &tf, &qg);
     long int gotas[qg];
@@ -28,15 +28,12 @@ int main(){
     maiorD = gotas[0]-1;
     for(i = 0; i<qg; i++){
         if(i+1==qg){
-            if(tf-gotas[i]>maiorD){
-                maiorD = tf-gotas[i];
-            }
+            temp = tf-gotas[i];
         }
         else{
-            if((gotas[i+1]-gotas[i]-1)/2>maiorD){
-                maiorD = (gotas[i+1]-gotas[i]-1)/2 + (gotas[i+1]-gotas[i]-1)%2;
-            }
+            temp = (gotas[i+1]-gotas[i]-1)/2 + (gotas[i+1]-gotas[i]-1)%2;
         }
+        if(temp>maiorD) maiorD=temp;
     }
     printf("%ld\n", maiorD);
     return 0;
