@@ -35,7 +35,7 @@ void main(){
             }
         }
 
-        int pontuacoes[p], maior, iPilotoC;
+        int pontuacoes[p], maior, iPilotoC, in;
         for(i=0; i < s; i++){
             for (j=0; j < p; j++) pontuacoes[j] = 0;
             for(j=0; j < g; j++){
@@ -44,11 +44,15 @@ void main(){
                     pontuacoes[k] += tables[i][iPilotoC];
                 }
             }
-            maior = 0;
+            maior, in = 0;
             for(j=0;j<p;j++) if(pontuacoes[j] >= maior) maior = pontuacoes[j];
-            for(j=0;j<p;j++) if(pontuacoes[j] == maior)
-                printf("%d ", j+1);
+            for(j=0;j<p;j++){
+                if(pontuacoes[j] == maior){
+                    if(in)printf(" %d", j+1);
+                    else printf("%d", j+1), in = 1;
+                }
+            }
             printf("\n");
         }
-     }
+    }
 }
