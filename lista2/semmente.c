@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 #include <stdio.h>
-void main(){
-    long int tf, maiorD, disIni=1, dias;
+int main(){
+    long int tf, maiorD;
     int qg, i;
     scanf("%ld %d", &tf, &qg);
     long int gotas[qg];
@@ -25,7 +25,7 @@ void main(){
     for(i = 0; i<qg; i++){ 
         scanf("%ld",&gotas[i]);
     }
-    maiorD = gotas[i]-1;
+    maiorD = gotas[0]-1;
     for(i = 0; i<qg; i++){
         if(i+1==qg){
             if(tf-gotas[i]>maiorD){
@@ -33,18 +33,11 @@ void main(){
             }
         }
         else{
-            if(gotas[i+1]-gotas[i]-1>maiorD){
-                maiorD = gotas[i+1]-gotas[i]-1;
-                distIni = 0;
+            if((gotas[i+1]-gotas[i]-1)/2>maiorD){
+                maiorD = (gotas[i+1]-gotas[i]-1)/2;
             }
         }
     }
-    if(distIni){
-        dias = maiorD;
-    }
-    else{
-        dias = maiorD/2;
-    }
-    printf("%ld\n", dias);
-
+    printf("%ld\n", maiorD);
+    return 0;
 }
