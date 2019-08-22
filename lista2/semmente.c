@@ -34,7 +34,7 @@ int main(){
         }
         else{
             if((gotas[i+1]-gotas[i]-1)/2>maiorD){
-                maiorD = (gotas[i+1]-gotas[i]-1)/2;
+                maiorD = (gotas[i+1]-gotas[i]-1)/2 + (gotas[i+1]-gotas[i]-1)%2;
             }
         }
     }
