@@ -16,7 +16,21 @@
  * =====================================================================================
  */
 #include <stdio.h>
+#include <math.h>
 void main(){
-    int n, m;
+    int n, m, i, mt=0, mc;
     scanf("%d %d", &n, &m);
+    int pinos[n];
+    for (i=0;i<n;i++){
+        scanf("%d",&pinos[i]);
+    }
+    for(i=0;i<n;i++){
+        mc = fabs(pinos[i]-m);
+        printf("%d\n", mc);
+        if(pinos[i] > m && i+1<n) pinos[i]-=mc,pinos[i+1]-=mc;
+        else if (pinos[i]<m && i+1<n)pinos[i]+=mc, pinos[i+1]+=mc;
+        mt+=mc;
+    }
+    printf("%d\n", mt);
+
 }
