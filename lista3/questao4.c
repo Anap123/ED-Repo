@@ -18,10 +18,11 @@ int fatorialIt(int n)
 }
 
 //Calculo do seno iterativo
-double senoIt(int x, int qt)
+double senoIt(double x, int qt)
 {
-    int i, res = 0, t = 1;
-    for (i = 0; i < qt; i++)
+    int i, t = 1;
+    double res = 0;
+    for (i = 1; i <= qt; i++)
     {
         res = (i % 2 == 0) ? res + pow(x, t) / fatorialIt(t) : res - pow(x, t) / fatorialIt(t);
         t += 2;
@@ -29,7 +30,7 @@ double senoIt(int x, int qt)
     return res;
 }
 //Calculo do seno recursivamente
-double senoRec(int x, int qt)
+double senoRec(double x, int qt)
 {
     int t = qt * 2 - 1;
     if (qt == 1)
@@ -46,7 +47,7 @@ void main()
 
     printf("%d\n", fatorialIt(4));
 
-    printf("%lf\n", senoIt(90, 4));
+    printf("%lf\n", senoIt(3.14, 3));
 
-    printf("%lf\n", senoRec(90, 7));
+    printf("%lf\n", senoRec(3.14, 7));
 }
