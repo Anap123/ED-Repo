@@ -11,7 +11,7 @@ int isRealNumber(char *x)
       numAfterPoint = 1;
     if (x[i] == '.' && !hasPoint)
       hasPoint = 1;
-    else if ((x[i] == '.' && hasPoint) || (x[i] < '0') || ((x[i] > '9') && (x[i] != '.')))
+    else if ((x[i] == '.' && hasPoint) || ((x[i] < '0') || (x[i] > '9')) && (x[i] != '.'))
     {
       return 0;
     }
@@ -22,9 +22,15 @@ int isRealNumber(char *x)
     return 0;
 }
 
+int isIntNumber(char *x){
+  int i;
+  for(i=0;x[i]!= '\0';i++) if(x[i] < '0' || x[i] > '9') return 0;
+  return 1;
+}
+
 int atol2(char *x)
 {
-  if (!isRealNumber(x))
+  if (!isIntNumber(x))
     return 0;
   else
   {
