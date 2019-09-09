@@ -17,26 +17,20 @@
  */
 #include <stdio.h>
 void main(){
-    int i, qnotas[] = {0,0,0,0,0}, qmoedas[] = {0,0,0,0,0};
-    float val, va;
-    float notas[] = {2.0,5.0,10.0,20.0,50.0,100.0},moedas[] = {0.01,0.05,0.10,0.25,0.50,1.0};
+    int i, qn;
+    float notas[]= {100,50,20,10,5,2}, moedas[] = {1.00,0.5,0.25,0.10,0.05,0.01},val;
     scanf("%f", &val);
-    for(i = 5; i >= 0; i--){
-        while(val - notas[i] >= 0){
-            val = val - notas[i];
-            qnotas[i]++;
-        }
-    }
-    for(i=5;i>=0;i--){
-        while(val - moedas[i] >= 0){
-            val = val -moedas[i];
-            qmoedas[i]++;
-        }
-    }
     printf("NOTAS:\n");
-    for(i = 11; i >= 0; i--){
-        if(i==5) printf("MOEDAS:\n");
-        if(i>5) printf("%d notas(s) de R$ %.2f\n", qnotas[i-6], notas[i-6]);
-        if (i<=5) printf("%d moeda(s) de R$ %.2f\n", qmoedas[i], moedas[i]);
+    for(i=0;i<6;i++){
+        qn = val/notas[i];
+        printf("%d nota(s) de R$ %.2f\n",qn, notas[i]);
+        val = val - notas[i]*qn;
     }
+    printf("MOEDAS:\n");
+    for(i=0;i<6;i++){
+        qn = val/moedas[i];
+        printf("%d moeda(s) de R$ %.2f\n",qn, moedas[i]);
+        val = val - moedas[i]*qn;
+    }
+
 }
