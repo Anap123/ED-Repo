@@ -33,14 +33,14 @@ int* splitInt(const char *s, int *size){
     *size = vSize;
     if(!vSize) return NULL;
     int* vn = (int*)malloc(vSize*sizeof(int));
-    int i, cn = 0, qn=0;
+    int i, cn = 0, qn = 0;
     char num[10];
     for(i = 0; s[i]!='\0';i++){
         if(s[i]!=' '){
             num[cn] = s[i];
             cn++;
         }
-        if(s[i+1]==' '||s[i+1]=='\0' && cn){
+        if((s[i+1]==' '||s[i+1]=='\0') && cn){
             num[cn] = '\0';
             vn[qn] = atoi(num);
             cn = 0, qn++;
@@ -56,7 +56,7 @@ int main(){
     int *ent_int = splitInt(ent, &size);
     // Checar se a string é valida
     if(ent_int==NULL){
-        printf("String inválida");
+        printf("String inválida\n");
         return 1;
     }
     printf("Size: %d\n", size);
