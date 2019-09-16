@@ -33,8 +33,7 @@ double distTwoPoints(Ponto p, Ponto q){
 }
 
 double inLine(Ponto p, Reta r){
-    if((p.x * r.a + p.y * r.b + r.c) == 0) return 1;
-    else return 0;
+    return ((p.x * r.a + p.y * r.b + r.c) == 0);
 }
 
 double distPointLine(Ponto p, Reta r){
