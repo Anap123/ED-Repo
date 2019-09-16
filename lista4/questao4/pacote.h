@@ -30,6 +30,7 @@ typedef struct{
 } Packet;
 
 Packet *createDataPacket(uint8_t id, uint8_t qnt_b, uint32_t source, uint32_t dest){
+    if(qnt_b > 100 || qnt_b < 0) return NULL;
     Packet *p =(Packet*)malloc(sizeof(Packet));
     p->id_pkg = id;
     p->addr_dest = dest;

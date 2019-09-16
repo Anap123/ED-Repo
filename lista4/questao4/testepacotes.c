@@ -21,10 +21,14 @@
 #include "pacote.h"
 
 void main(){
-    Packet *p1, *p2;
+    Packet *p1, *p2, *p3;
     // Criando os pacotes do tipo Data e ACK(pacote de reconhecimento)
     p1 = createDataPacket(10, 5, 1, 2);
     p2 = createACKPacket(20, 1, 2);
+    p3 = createDataPacket(13, 123, 3, 1);  //Tentando criar pacote com carga útil maior que 100.
+
+    printf("Ponteiro para p3: %ld\n", p3);
+    
 
     // Criando a carga que sera destinada ao pacote p1
     uint8_t data[] = {1,2,3,4,112};
