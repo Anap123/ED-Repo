@@ -34,15 +34,17 @@ int main(){
     a2.idade = 12;
     strcpy(a2.nome, "Maria");
 
-    a1.notas = a2.notas = (int*)malloc(5*sizeof(int));
+    a1.notas = (int*)malloc(5*sizeof(int));
+    a2.notas = (int*)malloc(4*sizeof(int));
     int i;
     double media = 0;
     for(i = 0; i < 5; i++){
         a1.notas[i] = 100;
+        if(i<4) a2.notas[i] = 100;
         media += a1.notas[i];
     }
     media = media/5;
-    printf("Media de %s: %lf\n", a1.nome, media);
+    printf("Media de %s: %.2lf\n", a1.nome, media);
 
     media = 0;
 
@@ -51,7 +53,7 @@ int main(){
         media+=a2.notas[i];
     }
     media = media/4;
-    printf("Media de %s: %lf\n", a2.nome, media);
+    printf("Media de %s: %.2lf\n", a2.nome, media);
 
     free(a1.notas);
     return 0;
