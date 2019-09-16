@@ -1,6 +1,6 @@
 #Questão 1: Qual a saída fornecida por esse programa?
-    Media de Pedro: 92
-    Media de ????: 90
+    Media de Pedro: 92.00
+    Media de ????: 90.00
 
 #Questão 2: O que ocorre na linha 25?
     O ponteiro para as notas do a2 (estrutura do tipo aluno) recebe o endereço para as notas do a1, que
