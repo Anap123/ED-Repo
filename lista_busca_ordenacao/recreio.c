@@ -2,27 +2,32 @@
 
 void main()
 {
-    int n, i, na, j, nc;
+    int na, i, n, k;
     scanf("%d", &n);
-    for (i = 0; i < n; i++)
+    for (k = 0; k < n; k++)
     {
         scanf("%d", &na);
-        int notas[na],notass[na],k, count = 0;
-        for (j = 0; j < na; j++) scanf("%d", &notas[j]);
-
-        for (j = 1; j < na; j++)
+        int notas[na], aux[na];
+        for (i = 0; i < na; i++)
         {
-            nc = notas[j];
-            k = j - 1;
-            if(nc > notas[k]) count++;
-            //while (k >= 0 && notas[k] > nc)
-            //{
-            //    notas[k + 1] = notas[k];
-            //    k--;
-            //}
-            
-            //notas[k+1] = nc;
+            scanf("%d", &notas[i]);
+            aux[i] = notas[i];
         }
-        printf("%d\n", na-count);
+        int nc, j, trocado, countNTrocado = 0;
+        for (i = 1; i < na; i++)
+        {
+            nc = notas[i];
+            j = i - 1;
+            while (j >= 0 && notas[j] < nc)
+            {
+                notas[j + 1] = notas[j];
+                j--;
+            }
+            notas[j + 1] = nc;
+        }
+        for (i = 0; i < na; i++)
+            if (notas[i] == aux[i])
+                countNTrocado++;
+        printf("%d\n", countNTrocado);
     }
 }
