@@ -20,11 +20,12 @@
 
 void main()
 {
-    int np, npa, i, fim = 0;
+    int np, npa, i, fim = 0, tp = 0, ini = 0, meio, cp, aux;
+    ;
 
     scanf("%d", &np);
     scanf("%d", &npa);
-    
+
     int paes[npa];
     for (i = 0; i < npa; i++)
     {
@@ -33,25 +34,22 @@ void main()
             fim = paes[i];
     }
 
-    int tp = 0, ini = 0, meio, cp, aux;
     while (fim >= ini)
     {
         meio = (fim + ini) / 2, cp = 0;
         for (i = 0; i < npa; i++)
             cp += (paes[i] / meio);
-        if (cp == np && meio > tp)
+        if (cp >= np && meio > tp)
         {
             tp = meio;
-            break;
+            ini = meio + 1;
+
         }
-        if (cp < np)
+        else
         {
             fim = meio - 1;
         }
-        else if (cp > np)
-        {
-            ini = meio + 1;
-        }
+        
     }
     printf("%d\n", tp);
 }
