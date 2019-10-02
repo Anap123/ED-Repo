@@ -20,10 +20,12 @@
 
 void main()
 {
-    int np, npa;
-    int paes[npa], i, fim = 0;
+    int np, npa, i, fim = 0;
+
     scanf("%d", &np);
     scanf("%d", &npa);
+    
+    int paes[npa];
     for (i = 0; i < npa; i++)
     {
         scanf("%d", &paes[i]);
@@ -44,11 +46,11 @@ void main()
         }
         if (cp < np)
         {
-            fim = meio-1;
+            fim = meio - 1;
         }
         else if (cp > np)
         {
-            ini = meio+1;
+            ini = meio + 1;
         }
     }
     printf("%d\n", tp);
