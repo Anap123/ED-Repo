@@ -21,14 +21,44 @@
 
 void main()
 {
-    int n, m, i;
+    int n, m, i, j;
     while (1)
     {
         scanf("%d %d", &n, &m);
-        if (n > 0 && m > 0)
+        if (n == 0 && m == 0)
             break;
-        for(i = 0; i < n; i++){
-            
+        int nums[n], mods[n];
+        for (i = 0; i < n; i++)
+        {
+            scanf("%d", &nums[i]);
+            mods[i] = nums[i] % m;
         }
+        int auxM, auxN;
+        for (j = 1; j < n; j++)
+        {
+            auxM = mods[j];
+            auxN = nums[j];
+            i = j - 1;
+            while (i >= 0 && mods[i] >= auxM)
+            {
+                if (mods[i] == auxM)
+                {
+                    if(nums[i]%2 == 0 && auxN%2 == 1){
+                        nums[i] = nums[i+1];
+                        mods[i] = mods[i+1];
+                    }
+                }
+                else
+                {
+                    nums[i + 1] = nums[i];
+                    mods[i + 1] = mods[i];
+                }
+                i--;
+            }
+            nums[i + 1] = auxN;
+            mods[i + 1] = auxM;
+        }
+        for (i = 0; i < n; i++)
+            printf("%d\n", nums[i]);
     }
 }
