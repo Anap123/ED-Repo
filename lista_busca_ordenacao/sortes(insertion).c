@@ -19,6 +19,19 @@
 #include <stdio.h>
 #include <inttypes.h>
 
+int compare(int a, int b, int mod){
+    if(a % mod > b % mod){
+        return 1;
+    }
+    else if(a % mod == b % mod){
+        if(a % 2 == b % 2){
+            if(a % 2 == 0) return a > b;
+            else return a < b;
+        }
+        else return (b % 2 == 1);
+    }
+    else return 0;
+}
 void main()
 {
     int n, m, i, j;
@@ -29,35 +42,21 @@ void main()
             break;
         int nums[n], mods[n];
         for (i = 0; i < n; i++)
-        {
             scanf("%d", &nums[i]);
-            mods[i] = nums[i] % m;
-        }
-        int auxM, auxN;
-        for (j = 1; j < n; j++)
+
+        int j, aux;
+        for (i = 1; i < n; i++)
         {
-            auxM = mods[j];
-            auxN = nums[j];
-            i = j - 1;
-            while (i >= 0 && mods[i] >= auxM)
+            j = i - 1;
+            aux = nums[i];
+            while (j >= 0 && compare(nums[j], aux, m)) // if (nums[j] > aux) == (a > b) 3 > 9
             {
-                if (mods[i] == auxM)
-                {
-                    if(nums[i]%2 == 0 && auxN%2 == 1){
-                        nums[i] = nums[i+1];
-                        mods[i] = mods[i+1];
-                    }
-                }
-                else
-                {
-                    nums[i + 1] = nums[i];
-                    mods[i + 1] = mods[i];
-                }
-                i--;
+                nums[j + 1] = nums[j];
+                j--;
             }
-            nums[i + 1] = auxN;
-            mods[i + 1] = auxM;
+            nums[j + 1] = aux;
         }
+        printf("%d %d\n", n, m);
         for (i = 0; i < n; i++)
             printf("%d\n", nums[i]);
     }
