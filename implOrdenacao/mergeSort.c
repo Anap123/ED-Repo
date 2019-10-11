@@ -23,42 +23,67 @@
 void mergeSort(int *nums, int ini, int fim);
 void merge(int *nums, int ini, int fim);
 
-
-void main(){
+void main()
+{
     clock_t start, end;
     start = clock();
-    int random[] = {4,5,61,4,8,31,6432,1000};
+    int random[] = {4, 5, 61, 4, 8, 31, 6432, 1000};
     int i;
-    mergeSort(random,0, 7);
+    printf("Lista origninal:\n[ ");
+    for (i = 0; i < 8; i++)
+    {
+        if (i < 7)
+            printf("%d, ", random[i]);
+        else
+            printf("%d", random[i]);
+    }
+    printf("]\n");
+    mergeSort(random, 0, 8);
     end = clock();
-    for(i = 0; i < 8; i++) printf("%d ", random[i]);
-    printf("\n Tempo de execução: %lf\n", ((double) (end - start)) /CLOCKS_PER_SEC);
-
+    printf("Merge sort:\n[ ");
+    for (i = 0; i < 8; i++)
+        if (i < 7)
+            printf("%d, ", random[i]);
+        else
+            printf("%d", random[i]);
+    printf("]\n");
+    printf("Tempo de execução: %lf\n", ((double)(end - start)) / CLOCKS_PER_SEC);
 }
-void mergeSort(int *nums, int ini, int fim){
-    if(fim > ini){
-        int meio = (ini+fim)/2;
-        mergeSort(nums, ini, meio);
-        mergeSort(nums, meio + 1, fim);
-        merge(nums, ini, fim);
+
+void mergeSort(int *nums, int i, int f)
+{
+    if (f > i)
+    {
+        int meio = (i + f) / 2;
+        mergeSort(nums, i, meio);
+        mergeSort(nums, meio + 1, f);
+        merge(nums, i, f);
     }
 }
 
-void merge(int *nums, int ini, int fim){
-    int meio = (ini+fim)/2;
-    int aux[(fim - ini + 1)];
-    int e = ini, d = meio + 1, k = 0;
-    while(e <= meio || d<=fim){
-        if(e > meio)
-            aux[k++] =  nums[d++];
-        else if (d>fim)
+void merge(int *nums, int i, int f)
+{
+    int m = (i + f) / 2;
+    int e = i, d = m + 1, k = 0, tam = f - i + 1;
+    int *aux = (int*)malloc(tam * sizeof(int));
+    while (e <= m || d <= f)
+    {
+        if (e > m)
+            aux[k++] = nums[d++];
+
+        else if (d > f)
             aux[k++] = nums[e++];
+
         else if (nums[e] < nums[d])
             aux[k++] = nums[e++];
+
         else
             aux[k++] = nums[d++];
     }
-    int i;
-    for(i = 0; i < k; i++)
-        nums[k] = aux[k - i ];
+
+    for (k = i; k < f; k++)
+    {
+        nums[k] = aux[k - i];
+    }
+    free(aux);
 }
