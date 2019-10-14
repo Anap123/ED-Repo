@@ -4,16 +4,7 @@
 
 
 int main () {
-   const char haystack[20] = "TutorialsPoint";
-   const char needle[10] = "Point";
-   char *ret;
-
-   ret = strstr(haystack, needle);
-
-   printf("The substring is: %s\n", ret);
-   printf("%d %d\n", ret, haystack);
-
-      printf("%s\n", haystack);
-
-   return(0);
+   int a = -12;
+   int b = a & 1;
+   printf("%d %d\n", a & 2, b);
 }
