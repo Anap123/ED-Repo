@@ -48,7 +48,7 @@ void main()
     while (1)
     {
         scanf("%d %d", &n, &m);
-        if (n == 0)
+        if (n == 0 && m == 0)
         {
             printf("0 0\n");
 
