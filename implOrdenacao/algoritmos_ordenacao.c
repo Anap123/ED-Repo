@@ -22,6 +22,7 @@ void preencheArray(int *v, int *v2, int *v3,  int *v4, int n) {
         v[i] = rand()%100; //sorteia valor entre 0 e 99 e atribui ao elemento do vetor
         v2[i] = v[i];
         v3[i] = v[i];
+        v4[i] = v[i];
     }
 }
 
@@ -46,6 +47,9 @@ int partition(int *v, int i, int f);
 
 void quicksort(int *v, int i, int f);
 
+void swap(int *a, int *b);
+
+
 int main() {
     int SIZE;
     
@@ -59,39 +63,41 @@ int main() {
     int *v2 = (int*)malloc(SIZE*sizeof(int));
     int *v3 = (int*)malloc(SIZE*sizeof(int));
     int *v4 = (int*)malloc(SIZE*sizeof(int));
-    preencheArray(v,v2,v3,v4,SIZE);
-    
+
     clock_t ticks[2];
     
     ticks[0] = clock();
     mergeSort(v,0,SIZE-1);
     ticks[1] = clock();
     double tempo1 = (double)(ticks[1] - ticks[0])/ CLOCKS_PER_SEC;   
-   // printf("Tempo gasto - merge: %lf s.\n", tempo1);
+    printf("Tempo gasto - merge: %lf s.\n", tempo1);
        
     ticks[0] = clock();
     insertionsort(v2, SIZE);
     ticks[1] = clock();
     double tempo2 = (double)(ticks[1] - ticks[0])/ CLOCKS_PER_SEC;
-  //  printf("Tempo gasto - insertion: %lf s.\n", tempo2);
+    printf("Tempo gasto - insertion: %lf s.\n", tempo2);
     
     ticks[0] = clock();
     quicksort(v3, 0, SIZE-1);
-   // qsort(v3, SIZE, sizeof(int), intcmp);
+   //  qsort(v3, SIZE, sizeof(int), intcmp);
     ticks[1] = clock();
     double tempo3 = (double)(ticks[1] - ticks[0])/ CLOCKS_PER_SEC;
-    
+    printf("Tempo gasto - quick: %lf s.\n", tempo3);
+
     ticks[0] = clock();
     qsort(v4, SIZE, sizeof(int), &intcmp);
     ticks[1] = clock();
     double tempo4 = (double)(ticks[1] - ticks[0])/ CLOCKS_PER_SEC;
+    printf("Tempo gasto - qsort stdlib: %lf s.\n", tempo4);
     
     printf("%lf %lf %lf %lf\n",tempo1, tempo2, tempo3, tempo4);
+
 
     
     //Verifica se o array final ficou ordenado
     int r = checkSort(v,SIZE);
-    printf("Check merge: %d\n",r);
+    printf("\nCheck merge: %d\n",r);
     r = checkSort(v2,SIZE);
     printf("Check insertion: %d\n",r);
     r = checkSort(v3,SIZE);
@@ -102,7 +108,7 @@ int main() {
     return 0;
 }
 
-void insertionSort(int *v, int n)
+void insertionsort(int *v, int n)
 {
     int i, j, key;
     for (i = 1; i < n; i++)
@@ -116,4 +122,68 @@ void insertionSort(int *v, int n)
         }
         v[j + 1] = key;
     }
+}
+
+void mergeSort(int *v, int i, int f)
+{
+    if (f > i)
+    {
+        int meio = (i + f) / 2;
+        mergeSort(v, i, meio);
+        mergeSort(v, meio + 1, f);
+        merge(v, i, f);
+    }
+}
+
+void merge(int *v, int i, int f)
+{
+    int m = (i + f) / 2;
+    int e = i, d = m + 1, k = 0, tam = f - i + 1;
+    int aux[tam];
+    // int *aux = (int *)malloc(tam * sizeof(int));
+    while (e <= m || d <= f)
+    {
+        if (e > m)
+            aux[k++] = v[d++];
+        else if (d > f)
+            aux[k++] = v[e++];
+        else if (v[e] < v[d])
+            aux[k++] = v[e++];
+        else
+            aux[k++] = v[d++];
+    }
+
+    for (k = i; k <= f; k++)
+    {
+        v[k] = aux[k - i];
+    }
+    // free(aux);
+}
+
+void quicksort(int *v, int i, int f){
+    if(f > i){
+        int p = partition(v, i, f);
+        quicksort(v, i, p-1);
+        quicksort(v, p+1, f);
+    }
+}
+
+int partition(int *v, int i, int f){
+    int d = i -1, j;
+    int p = v[f];
+    for(j = i; j < f; j++){
+        if(v[j] <= p){
+            d++;
+            swap(&v[j], &v[d]);
+        }
+    }
+    d++;
+    swap(&v[f], &v[d]);
+    return d;
+}
+
+void swap(int *a, int *b){
+    int aux = *a;
+    *a = *b;
+    *b = aux;
 }

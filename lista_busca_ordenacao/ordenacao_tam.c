@@ -26,6 +26,21 @@ void main()
     getchar();
     for (i = 0; i < n; i++)
     {
-       
+        int qp = 0, j;
+        char *aux = (char *)malloc(2500 * sizeof(char));
+        char delim[] = " ";
+        char str[50][50];
+        fgets(aux, 2500, stdin);
+        char *ptr = strtok(aux, delim);
+
+        while (ptr != NULL)
+        {
+            ptr = strtok(NULL, delim);
+            strcpy(ptr, str[qp]);
+            qp++;
+        }
+        for (j = 0; j < qp; j++)
+            printf("%s\n", str[qp]);
+        free(aux);
     }
 }

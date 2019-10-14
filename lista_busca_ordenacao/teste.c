@@ -3,8 +3,9 @@
 #include <stdlib.h>
 
 
+
 int main () {
-   int a = -12;
-   int b = a & 1;
-   printf("%d %d\n", a & 2, b);
+    int a = -100;
+    int b = 100;
+    printf("%d %d\n", a % 2, b % 2);
 }
