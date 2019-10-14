@@ -18,10 +18,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-typedef struct
-{
-
-} Palavra;
 
 void main()
 {
@@ -30,25 +26,6 @@ void main()
     getchar();
     for (i = 0; i < n; i++)
     {
-        char str[50 * 50], *token;
-        char del[] = " ";
-        int countP = 0, j;
-        int lens[50];
-        fgets(str, 50 * 50, stdin);
-        token = strtok(str, del);
-        while (token != NULL)
-        {
-            if (token[0] != '\n' && token[0] != ' ')
-            {
-                lens[countP] = strlen(token);
-                countP++;
-            }
-            printf("%ld\n", token);
-            token = strtok(NULL, del);
-        }
-        printf("%d\n", countP);
-        for (j = 0; j < countP; j++)
-            printf("%d\n", lens[j]);
-        //printf("%s\n", str);
+       
     }
 }
