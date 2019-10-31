@@ -116,3 +116,27 @@ int insertPosition(list *l, int v, int pos)
         return 0;
     }
 }
+
+int removePos(list *l, int pos){
+    if (pos < 0 || pos > size(l))
+        return -1;
+    else{
+        int c;
+        node *n = l->begin;
+        node *a = NULL;
+        for (c = 0; c < pos; c++)
+        {
+            a = n;
+            n = n->next;
+        }
+        node *k = n->next;
+        if(a!=NULL)
+            a->next = k;
+        
+        else
+            l->begin = k;
+        
+        free(n);
+        return 0;
+    }
+}
