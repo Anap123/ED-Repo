@@ -34,7 +34,6 @@ void printList(list *l)
 {
     printf("[");
     node *p = l->begin;
-    node *a = NULL;
     while (p != NULL)
     {
         if (p->next != NULL)
@@ -62,9 +61,8 @@ void removeBack(list *l)
     }
     if (a == NULL)
         l->begin = NULL;
-    else{
+    else
         a->next = NULL;
-    }
     free(p);
 }
 

@@ -16,6 +16,8 @@ typedef struct{
 
 listD *createlistD();
 
+void printLd(listD *l);
+
 void insereIni(listD *l, int v);
 
 void insereFim(listD *l, int v);
