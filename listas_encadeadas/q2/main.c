@@ -4,13 +4,16 @@
 
 int main()
 {
+    // Criando a lista
     list *l = createList();
+    // Adicionando os elementos
     add(l, 2);
     add(l, 112);
     add(l, 4);
     add(l, 6);
     add(l, 7);
     add(l, 1);
+
     printList(l);
     int v, hasV;
     printf("Procure um elemento na lista: ");
@@ -25,6 +28,9 @@ int main()
     printf("Removendo o item da posição 2:\n");
     removePos(l, 2);
     printList(l);
- 
+
+    printf("Removendo o elemento 7:\n");
+    removeElement(l, 7);
+    printList(l);
     return 0;
 }

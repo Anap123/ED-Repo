@@ -29,4 +29,6 @@ int insertPosition(list *l, int v, int pos);
 
 int removePosition(list *l, int pos);
 
+int removeElement(list *l, int v);
+
 int get(list *l, int pos, int *vret);

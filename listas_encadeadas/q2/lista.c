@@ -132,11 +132,32 @@ int removePos(list *l, int pos){
         node *k = n->next;
         if(a!=NULL)
             a->next = k;
-        
+
         else
             l->begin = k;
-        
+
         free(n);
+        return 0;
+    }
+}
+
+int removeElement(list *l, int v){
+    int pos = hasElement(l, v);
+    if(pos < 0) return -1;
+    else{
+        removePos(l, pos);
+        return pos;
+    }
+}
+
+int get(list *l, int pos, int *vret){
+    if(pos < 0 || pos > size(l)) return -1;
+    else{
+        node *n = l->begin;
+        int i;
+        for(i = 0; i < pos; i++)
+            n = n->next;
+        *vret = n->v;
         return 0;
     }
 }
