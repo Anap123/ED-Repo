@@ -84,11 +84,35 @@ int hasElement(list *l, int v)
     int pos = 0;
     while (n != NULL)
     {
-        printf("%d\n", n->v);
         if (n->v == v)
             return pos;
         pos++;
         n = n->next;
     }
     return -1;
+}
+
+int insertPosition(list *l, int v, int pos)
+{
+    if (pos < 0 || pos > size(l))
+        return -1;
+    else
+    {
+        int c;
+        node *n = l->begin;
+        node *a = NULL;
+        node *p = (node *)(malloc(sizeof(node)));
+        p->v = v;
+        for (c = 0; c < pos; c++)
+        {
+            a = n;
+            n = n->next;
+        }
+
+        p->next = n;
+        if(a==NULL) l->begin = p;
+        else a->next = p;
+
+        return 0;
+    }
 }

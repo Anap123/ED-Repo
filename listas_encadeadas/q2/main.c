@@ -18,5 +18,8 @@ int main()
     hasV = hasElement(l, v);
     if(hasV >= 0) printf("O elemento %d está na posição %d\n", v, hasV);
     else printf("O elemento %d não está na lista!\n", v);
+    printf("Adicionando 30 na posição 2:\n");
+    insertPosition(l, 30, 2);
+    printList(l);
     return 0;
 }
