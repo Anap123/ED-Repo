@@ -6,6 +6,7 @@ int main()
 {
     listD *l = createlistD();
     insereIni(l, 2);
+    insereIni(l, 7);
     insereFim(l, 3);
     printLd(l);
     return 0;

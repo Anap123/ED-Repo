@@ -27,6 +27,7 @@ void insereFim(listD *l, int v)
     n->data = v;
     n->next = NULL;
     n->before = l->end;
+    l->end->next = n;
     l->end = n;
 }
 
