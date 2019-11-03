@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-listD *createlistD()
+list *createlist()
 {
-    listD *l = (listD *)malloc(sizeof(listD));
+    list *l = (list *)malloc(sizeof(list));
     l->begin = NULL;
     l->end = l->begin;
     return l;
 }
 
-void insereIni(listD *l, int v)
+void insereIni(list *l, int v)
 {
     node *n = (node *)malloc(sizeof(node));
     n->data = v;
@@ -21,7 +21,7 @@ void insereIni(listD *l, int v)
         l->end = n;
 }
 
-void insereFim(listD *l, int v)
+void insereFim(list *l, int v)
 {
     node *n = (node*)malloc(sizeof(node));
     n->data = v;
@@ -31,7 +31,7 @@ void insereFim(listD *l, int v)
     l->end = n;
 }
 
-void printLd(listD *l)
+void printList(list *l)
 {
     printf("[");
     node *p = l->begin;
@@ -45,4 +45,50 @@ void printLd(listD *l)
         p = p->next;
     }
     printf("]\n");
+}
+
+int hasElement(list *l, int v){
+    node *p = l->begin;
+    int pos = 0;
+    while(p!=NULL){
+        if(p->data == v) return pos;
+        pos++;
+        p = p->next;
+    }
+    return -1;
+}
+
+int removeElement(list *l, int v){
+    int pos = hasElement(l, v);
+    if(pos < 0) return pos;
+    else{
+        int i;
+        node *p = l->begin;
+        for(i = 0; i < pos; i++)
+            p = p->next;
+
+        if(p==l->begin){
+            l->begin = p->next;
+            l->begin->before = NULL;
+        }
+        else if(p==l->end){
+            l->end = p->before;
+            l->end->next = NULL;
+        }
+        else{
+            p->next->before = p->before;
+            p->before->next = p->next;
+        }
+        free(p);
+        return pos;
+    }
+}
+
+void becomeCircular(list *l){
+    if(l->begin != l->end){
+        l->begin->before = l->end;
+        l->end->next = l->begin;
+        // A lista circular só tem um início
+        l->end = NULL;
+    }
 }

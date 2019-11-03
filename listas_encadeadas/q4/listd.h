@@ -12,16 +12,24 @@ typedef struct node node;
 typedef struct{
     node *begin;
     node *end;
-}listD;
+}list;
 
-listD *createlistD();
+list *createlist();
 
-void printLd(listD *l);
+void printList(list *l);
 
-void insereIni(listD *l, int v);
+void printCircular(list *l);
 
-void insereFim(listD *l, int v);
+void insereIni(list *l, int v);
 
-int hasElement(listD *l, int v);
+void insereCircular(list *l, int v);
 
-int removeElement(listD *l, int v);
+void insereFim(list *l, int v);
+
+int hasElement(list *l, int v);
+
+int removeElement(list *l, int v);
+
+int removeElementCircular(list *l, int v);
+
+void becomeCircular(list *l);
