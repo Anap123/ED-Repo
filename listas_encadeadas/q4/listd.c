@@ -85,10 +85,37 @@ int removeElement(list *l, int v){
 }
 
 void becomeCircular(list *l){
-    if(l->begin != l->end){
+    if(l->begin != NULL){
         l->begin->before = l->end;
         l->end->next = l->begin;
         // A lista circular só tem um início
-        l->end = NULL;
+    }
+}
+
+void printCircular(list *l){
+    
+    printf("[");
+    if(l->begin!=NULL){
+        node *a = l->begin;
+        do{
+            printf("%d, ", a->data);
+            a = a->next;
+        }while(a!=l->begin);
+    }
+    printf("]\n");
+}
+
+void insertCircular(list *l, int v){
+    node *n = (node*)malloc(sizeof(node));
+    n->data = v;
+    if(l->begin!=NULL){
+        n->next = l->begin;
+        n->before = l->end;
+        n->before->next = n;
+        l->end = n;
+    }
+    else{
+        l->begin = l->end = n;
+        n->before = n->next = n;
     }
 }
