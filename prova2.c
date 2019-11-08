@@ -17,7 +17,7 @@ int main(){
         int ini = 0, fim = strlen(frase), meio;
         // Busca binaria
         //complexidade o(log(n))
-        while(fim > ini){
+        while(fim >= ini){
             meio = (fim+ini)/2;
             if(c == frase[meio]){
                 res = meio % 21;
